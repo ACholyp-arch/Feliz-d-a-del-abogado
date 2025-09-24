@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: url('https://www.transparenttextures.com/patterns/watercolor.png');
+  background-size: cover;
+  color: black;
+  overflow-x: hidden;
+}
+
+.container {
+  text-align: center;
+  padding: 50px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.titulo {
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: 'Brush Script MT', cursive;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.foto {
+  width: 250px;
+  margin: 20px auto;
+  display: block;
+}
+
+.flores {
+  margin-top: 40px;
+}
+
+.flor {
+  width: 150px;
+  height: 200px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: crecer 3s ease forwards 2s;
+}
+
+.tallo {
+  stroke: green;
+  stroke-width: 4;
+}
+
+.centro {
+  fill: yellow;
+}
+
+.petalo {
+  fill: pink;
+}
+
+@keyframes crecer {
+  from { transform: scaleY(0); opacity: 0; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+
+/* Logos de fondo */
+.logos {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 2rem;
+  opacity: 0.15;
+}

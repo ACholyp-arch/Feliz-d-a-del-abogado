@@ -3,36 +3,124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feliz Día Licenciada</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Animación</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #c06b52; /* color del fondo */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+      color: white; /* letras blancas */
+      font-family: Arial, sans-serif;
+    }
+
+    img {
+      width: 300px;
+      border-radius: 10px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .flores {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .flor {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: yellow;
+      border-radius: 50%;
+      animation: caer 8s linear infinite;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+
+    /* pétalos extras */
+    .flor::before,
+    .flor::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: yellow;
+      border-radius: 50%;
+    }
+
+    .flor::before {
+      top: -15px;
+      left: 0;
+    }
+
+    .flor::after {
+      top: 0;
+      left: -15px;
+    }
+
+    @keyframes caer {
+      from {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Manchas de colores pastel */
+    .mancha {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+      filter: blur(60px);
+      animation: mover 12s infinite alternate ease-in-out;
+    }
+
+    @keyframes mover {
+      from { transform: translateY(0) translateX(0); }
+      to { transform: translateY(-100px) translateX(100px); }
+    }
+  </style>
 </head>
 <body>
-  <canvas id="confettiCanvas"></canvas>
+  <h1>Animación con flores</h1>
+  <img src="Abogada.png.png" alt="Abogada">
 
-  <div class="container">
-    <h1 class="titulo">¡Feliz Día Licenciada!</h1>
-    <img src="Abogada.png.png" alt="Abogada.png.png" class="foto">
+  <div class="flores"></div>
 
-    <!-- Flores animadas -->
-    <div class="flores">
-      <svg viewBox="0 0 200 200" class="flor">
-        <g>
-          <line x1="100" y1="200" x2="100" y2="120" class="tallo"/>
-          <circle cx="100" cy="110" r="10" class="centro"/>
-          <circle cx="85" cy="110" r="10" class="petalo"/>
-          <circle cx="115" cy="110" r="10" class="petalo"/>
-          <circle cx="100" cy="95" r="10" class="petalo"/>
-          <circle cx="100" cy="125" r="10" class="petalo"/>
-        </g>
-      </svg>
-    </div>
-  </div>
+  <!-- Manchas pastel -->
+  <div class="mancha" style="width:200px; height:200px; background:#f8b195; top:10%; left:20%;"></div>
+  <div class="mancha" style="width:250px; height:250px; background:#c06c84; bottom:15%; right:25%;"></div>
+  <div class="mancha" style="width:180px; height:180px; background:#f67280; top:50%; left:60%;"></div>
+  <div class="mancha" style="width:220px; height:220px; background:#355c7d; bottom:20%; left:15%;"></div>
 
-  <!-- Logos de abogados de fondo -->
-  <div class="logos">
-    ⚖️ 📚 🔨
-  </div>
+  <script>
+    const contenedor = document.querySelector('.flores');
 
-  <script src="script.js"></script>
+    function crearFlor() {
+      const flor = document.createElement('div');
+      flor.classList.add('flor');
+      flor.style.left = Math.random() * window.innerWidth + 'px';
+      flor.style.animationDuration = (5 + Math.random() * 5) + 's';
+      flor.style.transform = `scale(${0.5 + Math.random()})`;
+      contenedor.appendChild(flor);
+
+      setTimeout(() => {
+        flor.remove();
+      }, 10000);
+    }
+
+    setInterval(crearFlor, 400); // más flores
+  </script>
 </body>
 </html>
